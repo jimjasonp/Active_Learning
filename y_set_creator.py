@@ -41,7 +41,8 @@ new_damage_data = pd.DataFrame({'damage_perc':new_dmg,'damage_index_number':dmg_
 
 
 
-# to damage data list einai to damage sth morfh gia train
+# to damage data df einai to damage sth morfh gia train epeidh kanw classification thelo na exw labels gia auto kanw to damage percentage string
 damage_data_list=[]
 for dmg in damage_instances:
-    damage_data_list.append(dmg)
+    damage_data_list.append(str(dmg))
+damage_data_df = pd.DataFrame({'damage_percentage':damage_data_list})
