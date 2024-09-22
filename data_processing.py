@@ -24,13 +24,25 @@ for feature in feature_list:
         for i in range(0,len(sensor_data_list)):
             sample_sensor =sensor_data_list[i][sensor]
 
-            fs = 1/750
+            fs = 1/1000
             #the sampling frequency is 1/(seconds in a total experiment time)
 
             fourier = np.fft.fft(sample_sensor)
             #sample sensor is the value of s2 which is the 
             freqs = np.fft.fftfreq(sample_sensor.size,d=fs)
             power_spectrum = np.abs(fourier)
+
+
+
+            plt.plot(freqs,power_spectrum)
+
+            plt.xlim(0,max(freqs))
+            plt.title("Power Spectral Density of the Sunspot Number Time Series")
+            plt.grid(True)
+            #plt.show()
+
+
+
             # ta apotelesmata tou fft ta metatrepw se kapoio feature
             if feature == 'max':
                 sensor_fft.append(max(power_spectrum))
