@@ -1,15 +1,14 @@
 from x_set_creator import sensor_data_list
-from y_set_creator import damage_data_list
 import matplotlib.pyplot as plt
 import numpy as np
-
+import pandas as pd
 
 def sensor_fft(sensor_name):
 
 
     sensor_fft.sensor_name = []
 
-    for i in range(0,100):
+    for i in range(0,len(sensor_data_list)):
         sample_sensor =sensor_data_list[i][sensor_name]
 
         fs = 1/750
@@ -32,8 +31,11 @@ def sensor_fft(sensor_name):
 
 
 sensor_fft('s2')
-print(sensor_fft.sensor_name)
+s2_max = sensor_fft.sensor_name
 sensor_fft('s3')
-print(sensor_fft.sensor_name)
+s3_max = sensor_fft.sensor_name
 sensor_fft('s4')
-print(sensor_fft.sensor_name)
+s4_max = sensor_fft.sensor_name
+
+sensor_fft_df = pd.DataFrame({'s2_max':s2_max,'s3_max':s3_max,'s4_max':s4_max})
+print(sensor_fft_df)
