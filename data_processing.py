@@ -1,45 +1,62 @@
 from x_set_creator import sensor_data_list
-from y_set_creator import damage_data_list
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import statistics
 
-def sensor_fft(sensor_name):
+feature_list = ['max','mean','stdev','median_high']
+
+sensor_max = pd.DataFrame()
+sensor_mean = pd.DataFrame()
+sensor_stdev = pd.DataFrame()
+sensor_median_high = pd.DataFrame()
 
 
-    sensor_fft.sensor_name = []
+for feature in feature_list:
+    sensor_fft_df = pd.DataFrame()
+    sensor_fft = []
+    sensor_names = ['s2','s3','s4']
 
-    for i in range(0,len(sensor_data_list)):
-        sample_sensor =sensor_data_list[i][sensor_name]
+    for sensor in sensor_names:
+        sensor_fft = []
+        for i in range(0,len(sensor_data_list)):
+            sample_sensor =sensor_data_list[i][sensor]
 
-        fs = 1/750
-        #the sampling frequency is 1/(seconds in a total experiment time)
+            fs = 1/750
+            #the sampling frequency is 1/(seconds in a total experiment time)
 
-        fourier = np.fft.fft(sample_sensor)
-        #sample sensor is the value of s2 which is the 
-        freqs = np.fft.fftfreq(sample_sensor.size,d=fs)
+            fourier = np.fft.fft(sample_sensor)
+            #sample sensor is the value of s2 which is the 
+            freqs = np.fft.fftfreq(sample_sensor.size,d=fs)
 
-        power_spectrum = np.abs(fourier)
+            power_spectrum = np.abs(fourier)
+            if feature == 'max':
+                sensor_fft.append(max(power_spectrum))
+            elif feature =='mean':
+                sensor_fft.append(statistics.mean(power_spectrum))
+            elif feature =='stdev':
+                sensor_fft.append(statistics.stdev(power_spectrum))
+            elif feature =='median_high':
+                sensor_fft.append(statistics.median_high(power_spectrum))
         
-        sensor_fft.sensor_name.append(max(power_spectrum))
+        new_data = {sensor: sensor_fft}
+        sensor_fft_df = sensor_fft_df.assign(**new_data)
 
-        #plt.plot(freqs,power_spectrum)
+            #plt.plot(freqs,power_spectrum)
 
-        #plt.xlim(0,max(freqs))
-        #plt.title("Power Spectral Density of the Sunspot Number Time Series")
-        #plt.grid(True)
-        #plt.show()
-
-# kalw th sunarthsh pou upologizei to max tou fft gia kathe deigma apo aisththra gia olous tous aisththres
-# auta ta max ta pernaw se mia lista wste meta na ftiaksw ena dataframe pou tha balw ola ta dedomena gia olous tous aisththres
-sensor_fft('s2')
-s2_max = sensor_fft.sensor_name
-sensor_fft('s3')
-s3_max = sensor_fft.sensor_name
-sensor_fft('s4')
-s4_max = sensor_fft.sensor_name
+            #plt.xlim(0,max(freqs))
+            #plt.title("Power Spectral Density of the Sunspot Number Time Series")
+            #plt.grid(True)
+            #plt.show()
 
 
-#ftiaxno ena dataframe opou bazw mesa ta max tou fft gia kathe aisththra kai to antistoixo damage percentage se auth thn periptwsh
+    if feature == 'max':
+        sensor_max = sensor_max.assign(**sensor_fft_df)
+    elif feature =='mean':
+        sensor_mean = sensor_mean.assign(**sensor_fft_df)
+    elif feature =='stdev':
+        sensor_stdev = sensor_stdev.assign(**sensor_fft_df)
+    elif feature =='median_high':
+        sensor_median_high = sensor_median_high.assign(**sensor_fft_df)
+   
 
-sensor_fft_df = pd.DataFrame({'s2_max':s2_max,'s3_max':s3_max,'s4_max':s4_max,'damage_percentage':damage_data_list})
