@@ -1,4 +1,5 @@
 from x_set_creator import sensor_data_list
+from y_set_creator import damage_data_list
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -29,7 +30,8 @@ def sensor_fft(sensor_name):
         #plt.grid(True)
         #plt.show()
 
-
+# kalw th sunarthsh pou upologizei to max tou fft gia kathe deigma apo aisththra gia olous tous aisththres
+# auta ta max ta pernaw se mia lista wste meta na ftiaksw ena dataframe pou tha balw ola ta dedomena gia olous tous aisththres
 sensor_fft('s2')
 s2_max = sensor_fft.sensor_name
 sensor_fft('s3')
@@ -37,5 +39,7 @@ s3_max = sensor_fft.sensor_name
 sensor_fft('s4')
 s4_max = sensor_fft.sensor_name
 
-sensor_fft_df = pd.DataFrame({'s2_max':s2_max,'s3_max':s3_max,'s4_max':s4_max})
-print(sensor_fft_df)
+
+#ftiaxno ena dataframe opou bazw mesa ta max tou fft gia kathe aisththra kai to antistoixo damage percentage se auth thn periptwsh
+
+sensor_fft_df = pd.DataFrame({'s2_max':s2_max,'s3_max':s3_max,'s4_max':s4_max,'damage_percentage':damage_data_list})
