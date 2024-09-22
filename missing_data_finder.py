@@ -3,8 +3,8 @@ from x_set_creator import sensor_data
 from y_set_creator import new_damage_data
 
 
-#print(len(new_damage_data))
-#print(len(sensor_data))
+print(len(new_damage_data))
+print(len(sensor_data))
 
 '''
 
