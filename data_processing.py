@@ -30,29 +30,23 @@ for feature in feature_list:
 
 
 ##-----------------fourier
-
-
-
             fs = 1/1000
             #the sampling frequency is 1/(seconds in a total experiment time)
 
             fourier = np.fft.fft(sample_sensor)
             #sample sensor is the value of s2 which is the 
             freqs = np.fft.fftfreq(sample_sensor.size,d=fs)
-            power_spectrum = np.abs(fourier)
+            unfiltered_power_spectrum = np.abs(fourier)
 
-
+            #### new addition 25/09
+            ### filtrarei ta apotelesmata tou fft kai krataei mono tis times pou einai pio megales
+            power_spectrum = []
+            for element in unfiltered_power_spectrum: 
+                if element>2*10e-4:
+                    power_spectrum.append(element)
 ##-----------------fourier
 
-##-----------------plots
-            plt.plot(freqs,power_spectrum)
 
-            plt.xlim(0,max(freqs))
-            plt.title("Power Spectral Density of the Sunspot Number Time Series")
-            plt.grid(True)
-            #plt.show()
-
-##-----------------plots
 
             # ta apotelesmata tou fft ta metatrepw se kapoio feature
             
@@ -70,15 +64,6 @@ for feature in feature_list:
         # tis times tou kathe feature tis pernaw se ena df 
         new_data = {sensor: sensor_fft}
         sensor_fft_df = sensor_fft_df.assign(**new_data)
-
-            #plt.plot(freqs,power_spectrum)
-
-            #plt.xlim(0,max(freqs))
-            #plt.title("Power Spectral Density of the Sunspot Number Time Series")
-            #plt.grid(True)
-            #plt.show()
-
-
 ##-----------------feature selection
     if feature == 'max':
         sensor_max = sensor_max.assign(**sensor_fft_df)
@@ -88,5 +73,4 @@ for feature in feature_list:
         sensor_stdev = sensor_stdev.assign(**sensor_fft_df)
     elif feature =='median_high':
         sensor_median_high = sensor_median_high.assign(**sensor_fft_df)
-
 ##-----------------feature selection
