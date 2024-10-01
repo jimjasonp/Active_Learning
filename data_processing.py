@@ -37,6 +37,7 @@ for feature in feature_list:
             freqs = np.fft.fftfreq(sample_sensor.size,d=fs)
             power_spectrum = np.abs(fourier)
 
+
 ##-----------------fourier
 
 

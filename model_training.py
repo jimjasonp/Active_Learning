@@ -17,9 +17,9 @@ from sklearn.metrics import accuracy_score,confusion_matrix
 
 # -------------------user input-------------------
 #############################################
-sensor_list = ['s2']      #s2,s3,s4
+sensor_list = ['s2','s3','s4']      #s2,s3,s4
 feature = sensor_mean   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
-model = 'DT'                   #knn,svm,DT,dummy
+model = 'knn'                   #knn,svm,DT,dummy
 #odhgies gia user:
 #------gia na kanw tune to montelo pou thelo peirazw to arxeio training params
 #----- an thelo na allaksw ton arithmo twn samples phgainw stis train test split
@@ -42,7 +42,7 @@ y = damage_data_df.iloc[:,:]
 
 
 
-#X, X_drop, y, y_drop = train_test_split(X, y, test_size=0.8,shuffle=True)
+#X, X_drop, y, y_drop = train_test_split(X, y, test_size=0.5,shuffle=True)
 
 
 ## ta X kai y einai auta pou telika tha xrhsimopoisw
