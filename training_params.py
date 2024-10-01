@@ -6,10 +6,10 @@ from sklearn.dummy import DummyClassifier
 
 ## kanw import ta csv gia kathe feature pou thelw
 
-sensor_max = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\results\sensor_max.csv')
-sensor_median_high = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\results\sensor_median_high.csv')
-sensor_mean = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\results\sensor_mean.csv')
-sensor_stdev = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\results\sensor_stdev.csv')
+sensor_max = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\feature_csvs\sensor_max.csv')
+sensor_median_high = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\feature_csvs\sensor_median_high.csv')
+sensor_mean = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\feature_csvs\sensor_mean.csv')
+sensor_stdev = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\feature_csvs\sensor_stdev.csv')
 
 
 

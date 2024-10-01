@@ -17,11 +17,11 @@ from sklearn.metrics import accuracy_score,confusion_matrix
 
 # -------------------user input-------------------
 #############################################
-sensor_list = ['s2','s3','s4']
-feature = sensor_median_high
-model = 'DT'#knn,svm,DT,dummy
+sensor_list = ['s2']      #s2,s3,s4
+feature = sensor_mean   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
+model = 'DT'                   #knn,svm,DT,dummy
 #odhgies gia user:
-# -----gia na kanw tune to montelo pou thelo peirazw to arxeio training params
+#------gia na kanw tune to montelo pou thelo peirazw to arxeio training params
 #----- an thelo na allaksw ton arithmo twn samples phgainw stis train test split
 #------an thelo na treksw arxeio apo data_processing tote energopoiw tis duo parakatw grammes kai tis ftiaxnw opws thelw kai sbhnw to X apo pio katw
 #from data_processing import sensor_median_high,sensor_max,sensor_stdev,sensor_mean
