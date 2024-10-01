@@ -1,35 +1,32 @@
 #from data_processing import sensor_median_high
 from y_set_creator import damage_data_df
+from training_params import feature_for_training,sensor_median_high,sensor_max,sensor_mean,sensor_stdev
+from training_params import model_choice
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score,confusion_matrix
-from sklearn.svm import SVC
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.dummy import DummyClassifier
+
+
+
 
 # to programma trabaei ta dedomena me duo tropous
 # o prwtos tropos einai na trabaei to feature apo to data processing
 # o deuteros einai apo to csv pou kanei save to main
 
 
-sensor_max = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\results\sensor_max.csv')
-sensor_median_high = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\results\sensor_median_high.csv')
-sensor_mean = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\results\sensor_mean.csv')
-sensor_stdev = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\results\sensor_stdev.csv')
+
+### user input
+sensor_list = ['s2','s3','s4']
+feature = sensor_max
+model = 'knn'
+# gia na kanw tune to montelo pou thelo peirazw to arxeio training params
+# an thelo na allaksw ton arithmo twn samples phgainw stis train test split
+#############################################
 
 
-def feature_for_training(feature):
-    feature = feature[[
-        's2',
-        's3'
-        ,'s4'
-        ]]
-    X = feature.iloc[:,:]
-    return X
 
-X = feature_for_training(sensor_stdev)
+X = feature_for_training(feature,sensor_list)
 
 y = damage_data_df.iloc[:,:]
 
@@ -44,11 +41,11 @@ y = damage_data_df.iloc[:,:]
 #X, X_drop, y, y_drop = train_test_split(X, y, test_size=0.8,shuffle=True)
 
 
-## ta X kai y einai auta pou tha xrhsimopoisw
+## ta X kai y einai auta pou telika tha xrhsimopoisw
 ## ta X_drop kai y_drop einai auta pou den xrhsimopoiw
 
 #sto deutero split xrhsimopoiw ta dedomena training apo thn prohgoumenh ektelesh ths train test split
-#kai ta xrhsimopoiw gia na ftiaksw ta dedomena train kai test
+#kai ta xrhsimopoiw gia na ftiaksw ta actual dedomena train kai test
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4,shuffle=True)
 
@@ -59,21 +56,9 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
 
-#knn = KNeighborsClassifier(n_neighbors=5)
-#knn.fit(X_train, y_train)
-#y_pred = knn.predict(X_test)
 
-#svm = SVC()
-#svm.fit(X_train, y_train)
-#y_pred = svm.predict(X_test)
+y_pred = model_choice(model,X_train,y_train,X_test)
 
-DT = DecisionTreeClassifier()
-DT.fit(X_train, y_train)
-y_pred = DT.predict(X_test)
-
-#dummy = DummyClassifier(strategy='uniform')
-#dummy.fit(X_train, y_train)
-#y_pred = dummy.predict(X_test)
 
 CM = confusion_matrix(y_test,y_pred)
 print(CM)
