@@ -3,10 +3,7 @@ import statistics
 
 feature_list = ['max','mean','stdev','median_high']
 
-sensor_max = pd.DataFrame()
-sensor_mean = pd.DataFrame()
-sensor_stdev = pd.DataFrame()
-sensor_median_high = pd.DataFrame()
+
 
 def feature_maker(feature,sensor_fft,power_spectrum):
     if feature == 'max':

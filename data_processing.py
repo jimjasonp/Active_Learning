@@ -35,14 +35,8 @@ for feature in feature_list:
             fourier = np.fft.fft(sample_sensor)
             #sample sensor is the value of s2 which is the 
             freqs = np.fft.fftfreq(sample_sensor.size,d=fs)
-            unfiltered_power_spectrum = np.abs(fourier)
+            power_spectrum = np.abs(fourier)
 
-            #### new addition 25/09
-            ### filtrarei ta apotelesmata tou fft kai krataei mono tis times pou einai pio megales
-            power_spectrum = []
-            for element in unfiltered_power_spectrum: 
-                if element>2*10e-4:
-                    power_spectrum.append(element)
 ##-----------------fourier
 
 
