@@ -1,8 +1,2 @@
-1---- bazw se ksexwrristo file ta functions pou aforoun thn epilogh tou feature kai ta kanw kai extract se csv sto pc
-2---- bazw se ksexwristo file to fourier
-
-sto fourier den einai olo to shma xrhsimo plhroforia exw se duo perioxes to upoloipo einai flat
-prepei na diwksw tis times pou einai 0 h polu konta sto 0
-
-3---- baze se ksexwristo file na kanei plot to shma raw, to shma me fourier kai
-4---- ftiaxno mia main pou tha kalei to kathe function ksexwrista
+1---- paizo me arithmo orwn fourier
+2---- ksekinaw bibliografia gia health monitoring kai giati xrhsimopoeitai dl kai ml kai giati protimoun to dl

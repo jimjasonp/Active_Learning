@@ -31,7 +31,6 @@ for feature in feature_list:
 
 ##-----------------fourier
             fs = 1/1000
-            #the sampling frequency is 1/(seconds in a total experiment time)
 
             fourier = np.fft.fft(sample_sensor)
             #sample sensor is the value of s2 which is the 
