@@ -2,7 +2,7 @@ import pandas as pd
 import glob
 import os
 import numpy as np
-from y_set_creator import dmg_index_list
+from y_set_creator_old import dmg_index_list
 path = r'C:\Users\jimja\Desktop\thesis\data' # use your path
 # to sensor data list einai auto pou einai sth morfh gia train
 sensor_data_list = []

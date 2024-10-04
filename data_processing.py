@@ -30,8 +30,11 @@ for feature in feature_list:
 
 
 ##-----------------fourier
-            fs = 1/1000
 
+
+
+            fs = 1/1000
+            n_fourier_coeff = 100
             fourier = np.fft.fft(sample_sensor)
             #sample sensor is the value of s2 which is the 
             freqs = np.fft.fftfreq(sample_sensor.size,d=fs)
