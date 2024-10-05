@@ -3,14 +3,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.dummy import DummyClassifier
-
+from main import sensor_max,sensor_mean,sensor_stdev,sensor_median_high
 ## kanw import ta csv gia kathe feature pou thelw
-
-sensor_max = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\feature_csvs\sensor_max.csv')
-sensor_median_high = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\feature_csvs\sensor_median_high.csv')
-sensor_mean = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\feature_csvs\sensor_mean.csv')
-sensor_stdev = pd.read_csv(r'C:\Users\jimja\Desktop\thesis\feature_csvs\sensor_stdev.csv')
-
 
 
 #metatrepw to feature sth morfh pou thelw me ton arithmo twn sensors pou thelw se kathe periptwsh

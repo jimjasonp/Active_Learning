@@ -3,9 +3,14 @@ import pandas as pd
 
 #kalw kapoia functions pou exw ftiaksei kai leitourgoun ekswterika
 from fourier_transform import fourier
-from feature_selection import feature_maker , feature_df_assign
+from feature_selection import feature_maker
 
 feature_list = ['max','mean','stdev','median_high']
+
+sensor_max = pd.DataFrame()
+sensor_mean = pd.DataFrame()
+sensor_stdev = pd.DataFrame()
+sensor_median_high = pd.DataFrame()
 
 
 #gia kathe feature kataskeuazo ena dataframe pou tha mpoun gia kathe sensora oi times tou feature gia kathe timeserie tou sensora
@@ -27,6 +32,11 @@ for feature in feature_list:
         new_data = {sensor: sensor_fft}
         sensor_fft_df = sensor_fft_df.assign(**new_data)    
     #kataskeuazw ena dataframe gia to kathe feature me to antistoixo onoma
-    feature_df_assign(feature,sensor_fft_df)
-
-
+    if feature == 'max':
+        sensor_max = sensor_max.assign(**sensor_fft_df)
+    elif feature =='mean':
+        sensor_mean = sensor_mean.assign(**sensor_fft_df)
+    elif feature =='stdev':
+        sensor_stdev = sensor_stdev.assign(**sensor_fft_df)
+    elif feature =='median_high':
+        sensor_median_high = sensor_median_high.assign(**sensor_fft_df)
