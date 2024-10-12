@@ -17,9 +17,9 @@ from sklearn.metrics import accuracy_score,confusion_matrix
 # -------------------user input-------------------
 #############################################
 sensor_list = ['s2','s3','s4']      #s2,s3,s4
-feature = sensor_median_high   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
-damage_index = 'Damage_percentage' # ['Damage_percentage', 'DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
-model = 'knn'                   #knn,svm,DT,dummy
+feature = sensor_mean   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
+damage_index = 'DamageLayer2' # ['Damage_percentage', 'DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
+model = 'svm'                   #knn,svm,DT,dummy
 data_percentage = 1 # 0-> no data .... 1 -> full dataset (150 samples)
 #odhgies gia user:
 #------gia na kanw tune to montelo pou thelo peirazw to arxeio training params
