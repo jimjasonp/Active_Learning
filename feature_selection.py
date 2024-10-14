@@ -3,7 +3,7 @@ import statistics
 
 feature_list = ['max','mean','stdev','median_high']
 
-
+#### auto to function to bazw mesa sto main
 
 def feature_maker(feature,sensor_fft,power_spectrum):
     if feature == 'max':

@@ -1,6 +1,10 @@
 import numpy as np
 
 
+
+
+#### auto to function to bazw mesa sto main
+
 def fourier(sample_sensor):
     fs = 1/1000
     #the sampling frequency is 1/(seconds in a total experiment time)

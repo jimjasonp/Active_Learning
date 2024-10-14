@@ -29,8 +29,8 @@ dmg_data = dmg_data.sort_values(by=['dmg_index_number'])
 #sample = dmg_data['damage_file_name'][0] + '.csv'
 
 
-
-odd_layer ='DamageLayer5' ###['DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
+###### apo edw kai panw einai idio me y_set_creator
+odd_layer ='DamageLayer3' ###['DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
 
 for path in dmg_data['damage_file_name']:
     path = path + '.csv'
@@ -39,5 +39,15 @@ for path in dmg_data['damage_file_name']:
 
     df = 1 - (1-DL[0])*(1-DL[1])
     dm = 1 - (1-DL[2])*(1-DL[3])
-    print(df)
-    print(dm)
+    #print(df)
+    #print(dm)
+
+even_layer = 'DamageLayer2'
+for path in dmg_data['damage_file_name']:
+    path = path + '.csv'
+    dataframe = pd.read_csv(path,sep=' |,', engine='python')
+    DL = dataframe[even_layer]
+
+    dd = DL[0]
+    #print(dd)
+

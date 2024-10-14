@@ -5,7 +5,7 @@ from training_params import model_choice
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score,confusion_matrix
+from sklearn.metrics import accuracy_score,confusion_matrix,mean_absolute_error,root_mean_squared_error,mean_absolute_percentage_error
 
 
 # to programma trabaei ta dedomena me duo tropous
@@ -16,10 +16,11 @@ from sklearn.metrics import accuracy_score,confusion_matrix
 
 # -------------------user input-------------------
 #############################################
+mode = 'regression'  #classification / regression
 sensor_list = ['s2','s3','s4']      #s2,s3,s4
-feature = sensor_mean   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
-damage_index = 'DamageLayer2' # ['Damage_percentage', 'DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
-model = 'svm'                   #knn,svm,DT,dummy
+feature = sensor_median_high   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
+damage_index = 'Damage_percentage' # ['Damage_percentage', 'DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
+model = 'linear_regression'                   #knn,svm,DT,dummy,xgb,linear_regression,RF
 data_percentage = 1 # 0-> no data .... 1 -> full dataset (150 samples)
 #odhgies gia user:
 #------gia na kanw tune to montelo pou thelo peirazw to arxeio training params
@@ -30,7 +31,7 @@ data_percentage = 1 # 0-> no data .... 1 -> full dataset (150 samples)
 X = feature_for_training(feature,sensor_list)
 #############################################
 
-y = y_set_creator(damage_index)
+y = y_set_creator(damage_index,mode)
 y = y.iloc[:,:]
 # Split the data into training and test sets
 
@@ -38,7 +39,7 @@ y = y.iloc[:,:]
 
 
 if data_percentage == 1:
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4,shuffle=True)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,shuffle=True)
 else:
     X, X_drop, y, y_drop = train_test_split(X, y, test_size=1-data_percentage,shuffle=True)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4,shuffle=True)
@@ -50,12 +51,21 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 y_pred = model_choice(model,X_train,y_train,X_test)
 
+if mode == 'classification':
 
-CM = confusion_matrix(y_test,y_pred)
-print(CM)
+    CM = confusion_matrix(y_test,y_pred)
+    print(CM)
 
-accuracy = accuracy_score(y_test, y_pred)
-print('===============')
-print("Accuracy:", accuracy)
+    accuracy = accuracy_score(y_test, y_pred)
+    print('===============')
+    print("Accuracy:", accuracy)
 
+if mode == 'regression':
+    mape = mean_absolute_percentage_error(y_test,y_pred)
+    rmse = root_mean_squared_error(y_test,y_pred)
+    print('mape is ')
+    print(mape)
+    print('=================')
+    print('rmse is')
+    print(rmse)
 

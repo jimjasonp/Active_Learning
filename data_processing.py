@@ -1,3 +1,7 @@
+
+##### pleon den to xrhsimoppoiw
+
+
 from x_set_creator import sensor_data_list
 import matplotlib.pyplot as plt
 import numpy as np
