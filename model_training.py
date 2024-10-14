@@ -16,11 +16,11 @@ from sklearn.metrics import accuracy_score,confusion_matrix,mean_absolute_error,
 
 # -------------------user input-------------------
 #############################################
-mode = 'regression'  #classification / regression
+mode = 'classification'  #classification / regression
 sensor_list = ['s2','s3','s4']      #s2,s3,s4
 feature = sensor_max   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
 damage_index = 'Damage_percentage' # ['Damage_percentage', 'DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
-model = 'xgb'                   #knn,svm,DT,dummy,xgb,linear_regression,RF
+model = 'knn'                   #knn,svm,DT,dummy,xgb,linear_regression,RF
 data_percentage = 1 # 0-> no data .... 1 -> full dataset (150 samples)
 #odhgies gia user:
 #------gia na kanw tune to montelo pou thelo peirazw to arxeio training params
@@ -39,14 +39,13 @@ X = feature_for_training(feature,sensor_list)
 ####     test      ####
 
 
-#y = y_set_creator(damage_index,mode)
-#y = y.iloc[:,:]
+y = y_set_creator(damage_index,mode)
+y = y.iloc[:,:]
 
 
-from y_set_for_layer import DL3
-y = DL3['df']
+#from y_set_for_layer import DL3
+#y = DL3['df']
 
-print(y)
 #########################
 
 
