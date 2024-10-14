@@ -85,10 +85,10 @@ if odd_layer == 'DamageLayer5':
     DL5 = pd.DataFrame({'df': df_list,'dm':dm_list})
 
 
-if odd_layer == 'DamageLayer2':
-    DL2 = pd.DataFrame({'df': df_list,'dm':dm_list})
-if odd_layer == 'DamageLayer4':
-    DL4 = pd.DataFrame({'df': df_list,'dm':dm_list})
+if even_layer == 'DamageLayer2':
+    DL2 = pd.DataFrame({'dd': dd_list})
+if even_layer == 'DamageLayer4':
+    DL4 = pd.DataFrame({'dd': dd_list})
 
 
-print(DL3)
+print(DL2)
