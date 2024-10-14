@@ -90,5 +90,3 @@ if even_layer == 'DamageLayer2':
 if even_layer == 'DamageLayer4':
     DL4 = pd.DataFrame({'dd': dd_list})
 
-
-print(DL2)
