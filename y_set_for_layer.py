@@ -45,6 +45,8 @@ DL5 = pd.DataFrame()
 
 layers = ['DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
 
+mode = 'classification'  #'classification','regression'
+
 odd_layer ='DamageLayer3' ###['DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
 df_list = []
 dm_list = []
@@ -52,13 +54,15 @@ for path in dmg_data['damage_file_name']:
     path = path + '.csv'
     dataframe = pd.read_csv(path,sep=' |,', engine='python')
     DL = dataframe[odd_layer]
-
     df = 1 - (1-DL[0])*(1-DL[1])
     dm = 1 - (1-DL[2])*(1-DL[3])
-    df_list.append(df)
-    dm_list.append(dm)
-    #print(df)
-    #print(dm)
+    if mode == 'classification':
+        df_list.append(str(df))
+        dm_list.append(str(dm))
+    if mode == 'regression':
+        df_list.append(df)
+        dm_list.append(dm)
+    
 
 
 
@@ -69,9 +73,11 @@ for path in dmg_data['damage_file_name']:
     path = path + '.csv'
     dataframe = pd.read_csv(path,sep=' |,', engine='python')
     DL = dataframe[even_layer]
-
     dd = DL[0]
-    dd_list.append(dd)
+    if mode == 'classification':
+        dd_list.append(str(dd))
+    if mode == 'regression':
+        dd_list.append(dd)
     #print(dd)
 
 

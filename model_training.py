@@ -39,12 +39,12 @@ X = feature_for_training(feature,sensor_list)
 ####     test      ####
 
 
-y = y_set_creator(damage_index,mode)
-y = y.iloc[:,:]
+#y = y_set_creator(damage_index,mode)
+#y = y.iloc[:,:]
 
 
-#from y_set_for_layer import DL3
-#y = DL3['df']
+from y_set_for_layer import DL3
+y = DL3['df']
 
 #########################
 
