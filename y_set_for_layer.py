@@ -30,8 +30,24 @@ dmg_data = dmg_data.sort_values(by=['dmg_index_number'])
 
 
 ###### apo edw kai panw einai idio me y_set_creator
-odd_layer ='DamageLayer3' ###['DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
 
+
+
+
+
+
+DL1 = pd.DataFrame()
+DL2 = pd.DataFrame()
+DL3 = pd.DataFrame()
+DL4 = pd.DataFrame()
+DL5 = pd.DataFrame()
+
+
+layers = ['DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
+
+odd_layer ='DamageLayer3' ###['DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
+df_list = []
+dm_list = []
 for path in dmg_data['damage_file_name']:
     path = path + '.csv'
     dataframe = pd.read_csv(path,sep=' |,', engine='python')
@@ -39,15 +55,40 @@ for path in dmg_data['damage_file_name']:
 
     df = 1 - (1-DL[0])*(1-DL[1])
     dm = 1 - (1-DL[2])*(1-DL[3])
+    df_list.append(df)
+    dm_list.append(dm)
     #print(df)
     #print(dm)
 
+
+
+
 even_layer = 'DamageLayer2'
+dd_list = []
 for path in dmg_data['damage_file_name']:
     path = path + '.csv'
     dataframe = pd.read_csv(path,sep=' |,', engine='python')
     DL = dataframe[even_layer]
 
     dd = DL[0]
+    dd_list.append(dd)
     #print(dd)
 
+
+
+
+if odd_layer == 'DamageLayer1':
+    DL1 = pd.DataFrame({'df': df_list,'dm':dm_list})
+if odd_layer == 'DamageLayer3':
+    DL3 = pd.DataFrame({'df': df_list,'dm':dm_list})
+if odd_layer == 'DamageLayer5':
+    DL5 = pd.DataFrame({'df': df_list,'dm':dm_list})
+
+
+if odd_layer == 'DamageLayer2':
+    DL2 = pd.DataFrame({'df': df_list,'dm':dm_list})
+if odd_layer == 'DamageLayer4':
+    DL4 = pd.DataFrame({'df': df_list,'dm':dm_list})
+
+
+print(DL3)
