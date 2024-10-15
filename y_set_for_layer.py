@@ -131,7 +131,7 @@ DL3 = pd.DataFrame()
 DL4 = pd.DataFrame()
 DL5 = pd.DataFrame()
 
-
+#from model_training import mode
 mode = 'regression'  #'classification','regression'
 
 odd_layer =['DamageLayer1', 'DamageLayer3', 'DamageLayer5'] ###['DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']

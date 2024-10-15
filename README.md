@@ -7,9 +7,9 @@
         (helper)              |            ~~~DAMAGE DATA~~~~
                               |
                             features
-                        /      |      \    
-                       /       |       \
-                      /        |        \
+                        /     |      \    
+                       /      |       \
+                      /       |        \
     sensor_data_list        fourier       feature_maker
     (x_set_creator)         (helper)       (helper)
     ~~~SENSOR DATA~~~~
