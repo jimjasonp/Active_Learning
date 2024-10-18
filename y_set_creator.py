@@ -55,3 +55,4 @@ def y_set_creator(damage_result,mode):
             damage_data_list.append(dmg)
     damage_data_df = pd.DataFrame({f'{damage_result}':damage_data_list})
     return damage_data_df
+
