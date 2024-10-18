@@ -50,24 +50,40 @@ odd_layer =['DamageLayer1', 'DamageLayer3', 'DamageLayer5'] ###['DamageLayer1', 
 for layer in odd_layer:
     df_list = []
     dm_list = []
+    dtotal_list = []
+    i = 0
     for path in dmg_data['damage_file_name']:
         path = path + '.csv'
         dataframe = pd.read_csv(path,sep=' |,', engine='python')
         DL = dataframe[layer]
         df = 1 - (1-DL[0])*(1-DL[1])
         dm = 1 - (1-DL[2])*(1-DL[3])
-        if mode == 'classification':
-            df_list.append(str(df))
-            dm_list.append(str(dm))
-        if mode == 'regression':
-            df_list.append(df)
-            dm_list.append(dm)
+
+        if df and dm ==0:
+            dtotal_list.append('undamaged')
+            i = i+1
+        else :
+            dtotal_list.append('damaged')
+
     if layer == 'DamageLayer1':
-        DL1 = pd.DataFrame({'df': df_list,'dm':dm_list})
+        DL1 = pd.DataFrame({'dtotal': dtotal_list})
     if layer == 'DamageLayer3':
-        DL3 = pd.DataFrame({'df': df_list,'dm':dm_list})
+        DL3 = pd.DataFrame({'dtotal': dtotal_list})
     if layer == 'DamageLayer5':
-        DL5 = pd.DataFrame({'df': df_list,'dm':dm_list})
+        DL5 = pd.DataFrame({'dtotal': dtotal_list})
+
+        #if dm ==0:
+        #    dm_list.append('undamaged')
+        #else :
+        #    dm_list.append('damaged')
+
+
+    #if layer == 'DamageLayer1':
+    #    DL1 = pd.DataFrame({'df': df_list,'dm':dm_list})
+    #if layer == 'DamageLayer3':
+    #    DL3 = pd.DataFrame({'df': df_list,'dm':dm_list})
+    #if layer == 'DamageLayer5':
+    #    DL5 = pd.DataFrame({'df': df_list,'dm':dm_list})
 
 
 even_layer = [ 'DamageLayer2',  'DamageLayer4']
@@ -79,20 +95,15 @@ for layer in even_layer:
         dataframe = pd.read_csv(path,sep=' |,', engine='python')
         DL = dataframe[layer]
         dd = DL[0]
-        if mode == 'classification':
-            dd_list.append(str(dd))
-        if mode == 'regression':
-            dd_list.append(dd)
+
+        if dd ==0:
+            dd_list.append('undamaged')
+        else :
+            dd_list.append('damaged')
+
     if layer == 'DamageLayer2':
         DL2 = pd.DataFrame({'dd': dd_list})
     if layer == 'DamageLayer4':
         DL4 = pd.DataFrame({'dd': dd_list})
 
 
-i = 0
-
-for samples in DL3['dm']:
-    if samples == 0 :
-        i = i+1
-
-print(i)

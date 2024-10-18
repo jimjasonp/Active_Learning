@@ -39,30 +39,46 @@ def reg_models(model):
     y_pred = model_choice(model,X_train,y_train,X_test)
     mae = mean_absolute_error(y_test,y_pred)
     return mae
-'''
-
-'''
-
-mae_lr = reg_models('linear_regression')
-mae_rf = reg_models('RF')
-mae_xgb = reg_models('xgb')
 
 
-# creating the dataset
-data = {'Linear Regression':mae_lr, 
-        'Random Forest':mae_rf,
-        'XGB':mae_xgb}
+def bar_charts_mae():
 
-model_names  = list(data.keys())
-mae = list(data.values())
+    mae_lr = reg_models('linear_regression')
+    mae_rf = reg_models('RF')
+    mae_xgb = reg_models('xgb')
+
+    # creating the dataset
+    data = {'Linear Regression':mae_lr, 
+            'Random Forest':mae_rf,
+            'XGB':mae_xgb}
+
+    model_names  = list(data.keys())
+    mae = list(data.values())
  
-fig = plt.figure(figsize = (10, 5))
+    fig = plt.figure(figsize = (10, 5))
 
-# creating the bar plot
-plt.bar(model_names, mae, color ='maroon', 
-        width = 0.4)
+    # creating the bar plot
+    plt.bar(model_names, mae, color ='maroon', 
+            width = 0.4)
 
-plt.xlabel("Models")
-plt.ylabel("Mean absolute error")
-plt.title(f"Mean absolute error of models with number of samples used = {samples}")
-plt.show()
+    plt.xlabel("Models")
+    plt.ylabel("Mean absolute error")
+    plt.title(f"Mean absolute error of models with number of samples used = {samples}")
+    plt.show()
+
+
+
+def scatter_x_y (model):
+    y_pred = model_choice(model,X_train,y_train,X_test)
+    plt.plot(range(len(y_test)),y_test)
+    plt.plot(range(len(y_test)),y_pred)
+    plt.xlabel("sample")
+    plt.ylabel("y value")
+    plt.title(f"Comparison of predicted and y test for each datapoint using {model}")
+    plt.show()
+
+for model in model_list:
+    scatter_x_y(model)
+
+    
+bar_charts_mae()
