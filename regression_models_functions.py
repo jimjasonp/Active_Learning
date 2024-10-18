@@ -75,6 +75,7 @@ def scatter_x_y (model):
     plt.xlabel("sample")
     plt.ylabel("y value")
     plt.title(f"Comparison of predicted and y test for each datapoint using {model}")
+    plt.legend(["y_test", "y_pred"], loc="lower right")
     plt.show()
 
 for model in model_list:
