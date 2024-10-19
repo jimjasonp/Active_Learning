@@ -6,14 +6,14 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score,confusion_matrix,mean_absolute_error,root_mean_squared_error,mean_absolute_percentage_error
-
+import time
 
 # to programma trabaei ta dedomena me duo tropous
 # o prwtos tropos einai na trabaei to feature apo to data processing
 # o deuteros einai apo to csv pou kanei save to main
 
 
-
+start = time.time()
 # -------------------user input-------------------
 #############################################
 mode = 'regression'  #classification / regression
@@ -87,8 +87,9 @@ if mode == 'regression':
     print('rmse is')
     print(rmse)
 
+end = time.time()
+
+duration = end - start
 
 
-
-
-
+print("The time of execution of above program is :", duration * 10**3, "ms")
