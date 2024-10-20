@@ -48,6 +48,8 @@ y = DL1['df']
 #########################
 j = 6
 start = time.time()
+best_data = []
+biggest_undamaged_counter = 0
 while j >5:
 
     
@@ -71,6 +73,8 @@ while j >5:
         print(undamaged_counter)
         print(damaged_counter)
         j = 0
+    if undamaged_counter>biggest_undamaged_counter:
+        best_data = [X_train, X_test, y_train, y_test]
     end = time.time()
     duration = end - start
     if duration > 20:
@@ -78,6 +82,11 @@ while j >5:
 
 
 
+X_train = best_data[0]
+print(y_train)
+X_test = best_data[1]
+y_train = best_data[2]
+y_test = best_data [3]
 # Split the data into training and test sets
 
 #prwta epilegw to pososto twn dedomenwn pou tha xrhsimopoihsw gia to train kai test tou montelou
