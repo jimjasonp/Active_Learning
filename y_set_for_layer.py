@@ -43,6 +43,12 @@ DL4 = pd.DataFrame()
 DL5 = pd.DataFrame()
 
 
+DL1_total = pd.DataFrame()
+DL3_total = pd.DataFrame()
+DL5_total = pd.DataFrame()
+
+
+
 mode = 'regression'  #'classification','regression'
 
 odd_layer =['DamageLayer1', 'DamageLayer3', 'DamageLayer5'] ###['DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
@@ -59,6 +65,16 @@ for layer in odd_layer:
         df = 1 - (1-DL[0])*(1-DL[1])
         dm = 1 - (1-DL[2])*(1-DL[3])
 
+        if dm ==0:
+            dm_list.append('undamaged')
+        else :
+            dm_list.append('damaged')
+        if df ==0:
+            df_list.append('undamaged')
+        else :
+            df_list.append('damaged')
+
+
         if df and dm ==0:
             dtotal_list.append('undamaged')
             i = i+1
@@ -66,24 +82,18 @@ for layer in odd_layer:
             dtotal_list.append('damaged')
 
     if layer == 'DamageLayer1':
-        DL1 = pd.DataFrame({'dtotal': dtotal_list})
+        DL1_total = pd.DataFrame({'dtotal': dtotal_list})
     if layer == 'DamageLayer3':
-        DL3 = pd.DataFrame({'dtotal': dtotal_list})
+        DL3_total = pd.DataFrame({'dtotal': dtotal_list})
     if layer == 'DamageLayer5':
-        DL5 = pd.DataFrame({'dtotal': dtotal_list})
+        DL5_total = pd.DataFrame({'dtotal': dtotal_list})
 
-        #if dm ==0:
-        #    dm_list.append('undamaged')
-        #else :
-        #    dm_list.append('damaged')
-
-
-    #if layer == 'DamageLayer1':
-    #    DL1 = pd.DataFrame({'df': df_list,'dm':dm_list})
-    #if layer == 'DamageLayer3':
-    #    DL3 = pd.DataFrame({'df': df_list,'dm':dm_list})
-    #if layer == 'DamageLayer5':
-    #    DL5 = pd.DataFrame({'df': df_list,'dm':dm_list})
+    if layer == 'DamageLayer1':
+        DL1 = pd.DataFrame({'df': df_list,'dm':dm_list})
+    if layer == 'DamageLayer3':
+        DL3 = pd.DataFrame({'df': df_list,'dm':dm_list})
+    if layer == 'DamageLayer5':
+        DL5 = pd.DataFrame({'df': df_list,'dm':dm_list})
 
 
 even_layer = [ 'DamageLayer2',  'DamageLayer4']
@@ -105,5 +115,3 @@ for layer in even_layer:
         DL2 = pd.DataFrame({'dd': dd_list})
     if layer == 'DamageLayer4':
         DL4 = pd.DataFrame({'dd': dd_list})
-
-
