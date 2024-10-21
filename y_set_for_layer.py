@@ -104,7 +104,7 @@ for layer in even_layer:
         path = path + '.csv'
         dataframe = pd.read_csv(path,sep=' |,', engine='python')
         DL = dataframe[layer]
-        dd = DL[0]
+        dd = 1 - DL[0]
 
         if dd ==0:
             dd_list.append('undamaged')
