@@ -1,6 +1,7 @@
 import os
 import glob
 import pandas as pd
+import math
 path = r'C:\Users\jimja\Desktop\thesis\data' # use your path
 dmg_list = []
 name_list = []
@@ -64,7 +65,6 @@ for layer in odd_layer:
         DL = dataframe[layer]
         df = 1 - (1-DL[0])*(1-DL[1])
         dm = 1 - (1-DL[2])*(1-DL[3])
-
         if dm ==0:
             dm_list.append('undamaged')
         else :
@@ -105,6 +105,7 @@ for layer in even_layer:
         dataframe = pd.read_csv(path,sep=' |,', engine='python')
         DL = dataframe[layer]
         dd = 1 - DL[0]
+        dd = math.floor(dd*10)/10
 
         if dd ==0:
             dd_list.append('undamaged')
@@ -115,3 +116,5 @@ for layer in even_layer:
         DL2 = pd.DataFrame({'dd': dd_list})
     if layer == 'DamageLayer4':
         DL4 = pd.DataFrame({'dd': dd_list})
+
+        
