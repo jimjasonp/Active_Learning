@@ -1,7 +1,7 @@
 #from y_set_creator import damage_data_df
 from y_set_creator import y_set_creator
-from training_params import feature_for_training,sensor_median_high,sensor_max,sensor_mean,sensor_stdev
-from training_params import model_choice
+from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev
+from helper_functions import feature_for_training,model_choice
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -17,7 +17,7 @@ import time
 #############################################
 mode = 'classification'  #classification / regression
 sensor_list = ['s2','s3','s4']      #s2,s3,s4
-feature = sensor_median_high   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
+feature = sensor_mean   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
 damage_index = 'Damage_percentage' # ['Damage_percentage', 'DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
 model = 'svm'                   #knn,svm,DT,dummy,   xgb,linear_regression,RF
 data_percentage = 1 # 0-> no data .... 1 -> full dataset (150 samples)
@@ -42,10 +42,12 @@ X = feature_for_training(feature,sensor_list)
 #y = y.iloc[:,:]
 
 
-from y_set_for_layer import DL1,DL2,DL3,DL4,DL5
-y = DL1['df']
+from y_set_creator import DL1,DL2,DL3,DL4,DL5
+y = DL2['dd']
 
 #########################
+
+
 j = 6
 start = time.time()
 best_data = []
@@ -68,7 +70,7 @@ while j >5:
         if i == 'undamaged':
             undamaged_counter = undamaged_counter+1
 
-    if undamaged_counter >0.6*damaged_counter:
+    if undamaged_counter > 0.5*damaged_counter and undamaged_counter < 0.7*damaged_counter:
         print('done')
         print(undamaged_counter)
         print(damaged_counter)
@@ -79,11 +81,12 @@ while j >5:
     duration = end - start
     if duration > 20:
         j =0
+        print(undamaged_counter)
+        print(y_train)
 
 
 
 X_train = best_data[0]
-print(y_train)
 X_test = best_data[1]
 y_train = best_data[2]
 y_test = best_data [3]
@@ -93,8 +96,11 @@ y_test = best_data [3]
 
 
 
-
-
+if data_percentage == 1:
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,shuffle=True)
+else:
+    X, X_drop, y, y_drop = train_test_split(X, y, test_size=1-data_percentage,shuffle=True)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4,shuffle=True)
 # Scale the features using StandardScaler
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)

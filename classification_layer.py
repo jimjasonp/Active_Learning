@@ -30,7 +30,7 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-LR = LogisticRegression(class_weight={'damaged':1,'undamaged':4})
+LR = LogisticRegression(C=0.1,class_weight={'damaged':1,'undamaged':3})
 LR.fit(X_train, y_train)
 y_pred = LR.predict(X_test)
 

@@ -1,12 +1,11 @@
-
-import matplotlib.pyplot as plt
 from y_set_creator import y_set_creator
-from training_params import feature_for_training,sensor_median_high,sensor_max,sensor_mean,sensor_stdev
-from training_params import model_choice
-import pandas as pd
+from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev
+from helper_functions import feature_for_training,model_choice
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error,root_mean_squared_error
+import matplotlib.pyplot as plt
+import pandas as pd
 import time
 
 start = time.time()
