@@ -33,7 +33,7 @@ X_test = scaler.transform(X_test)
 LR = LogisticRegression(
                 tol=0.00000000001,
                 C=0.7,
-                class_weight={'damaged':1.9,'undamaged':4.4},
+                class_weight={'damaged':1.9,'undamaged':4},
                 max_iter=100000,
                 warm_start=True)
 LR.fit(X_train, y_train)

@@ -1,7 +1,7 @@
 #from y_set_creator import damage_data_df
 from y_set_creator_dmg_percentage import y_set_creator
 from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev
-from helper_functions import feature_for_training,model_choice
+from helper_functions import model_choice
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -19,7 +19,7 @@ mode = 'classification'  #classification
 sensor_list = ['s2','s3','s4']      #s2,s3,s4
 feature = sensor_max   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
 damage_index = 'Damage_percentage' # ['Damage_percentage', 'DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
-model = 'knn'                   #knn,svm,DT,dummy,   xgb,linear_regression,RF
+model = 'svm'                   #knn,svm,DT,dummy,   xgb,linear_regression,RF
 data_percentage = 1 # 0-> no data .... 1 -> full dataset (150 samples)
 #odhgies gia user:
 #------gia na kanw tune to montelo pou thelo peirazw to arxeio training params
@@ -27,7 +27,8 @@ data_percentage = 1 # 0-> no data .... 1 -> full dataset (150 samples)
 #------an thelo na treksw arxeio apo data_processing tote energopoiw tis duo parakatw grammes kai tis ftiaxnw opws thelw kai sbhnw to X apo pio katw
 #from data_processing import sensor_median_high,sensor_max,sensor_stdev,sensor_mean
 #X = sensor_mean.iloc[:,:]
-X = feature_for_training(feature,sensor_list)
+X = feature[sensor_list]
+X = feature.iloc[:,:]
 #############################################
 
 

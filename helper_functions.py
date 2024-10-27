@@ -28,13 +28,6 @@ def feature_csv_assign(feature,sensor_fft_df,sensor_max,sensor_mean,sensor_stdev
         sensor_median_high.to_csv(r'C:\Users\jimja\Desktop\thesis\feature_csvs\sensor_median_high.csv')
 
 
-
-#metatrepw to feature sth morfh pou thelw me ton arithmo twn sensors pou thelw se kathe periptwsh
-def feature_for_training(feature,sensor_list):
-    feature = feature[sensor_list]
-    X = feature.iloc[:,:]
-    return X
-
 #epilegw analogws to montelo pou thelw 
 def model_choice(model,X_train,y_train,X_test):
     ###########

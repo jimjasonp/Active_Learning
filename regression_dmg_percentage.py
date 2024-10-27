@@ -1,6 +1,6 @@
 from y_set_creator_dmg_percentage import y_set_creator
 from x_set_creator import sensor_mean,sensor_max,sensor_median_high,sensor_stdev
-from helper_functions import feature_for_training,model_choice
+from helper_functions import model_choice
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error,root_mean_squared_error
@@ -14,7 +14,10 @@ sensor_list = ['s2','s3','s4']      #s2,s3,s4
 feature = sensor_mean   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
 damage_index = 'Damage_percentage' # ['Damage_percentage', 'DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
 
-X = feature_for_training(feature,sensor_list)
+X = feature[sensor_list]
+X = feature.iloc[:,:]
+
+
 y = y_set_creator(damage_index,mode)
 y = y.iloc[:,:]
 
