@@ -8,7 +8,7 @@ To programma bgazei to accuracy kai to confusion matrix
 
 2) damaged_undamaged
 
-Kanei classify gia kathe layer an einai damaged h undamaged basei tou df dm gia ta mona layers kai tou dd gia ta zyga
+Kanei classify gia kathe layer an einai damaged h undamaged basei tou df dm gia ta mona layers kai tou dd gia ta zyga. Blepei gia kathe layer an uparxei df h dm h einai undamaged
 
 3) df_dm_dd
 

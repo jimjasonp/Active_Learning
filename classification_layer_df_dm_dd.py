@@ -7,7 +7,6 @@ import pandas as pd
 from x_set_creator import sensor_mean
 
 
-
 X = sensor_mean
 y = layer_damage['total_damage_per_layer']
 

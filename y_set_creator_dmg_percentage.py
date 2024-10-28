@@ -167,3 +167,4 @@ for layer in even_layer:
         DL2 = pd.DataFrame({'dd': dd_list})
     if layer == 'DamageLayer4':
         DL4 = pd.DataFrame({'dd': dd_list})
+
