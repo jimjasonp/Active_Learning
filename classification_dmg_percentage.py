@@ -9,6 +9,7 @@ from sklearn.metrics import accuracy_score,confusion_matrix
 import time
 from sklearn.metrics import ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
+import math
 # to programma trabaei ta dedomena me duo tropous
 # o prwtos tropos einai na trabaei to feature apo to data processing
 # o deuteros einai apo to csv pou kanei save to main
@@ -21,7 +22,7 @@ sensor_list = ['s2','s3','s4']      #s2,s3,s4
 feature = sensor_max   #sensor_median_high,sensor_max,sensor_mean,sensor_stdev
 damage_index = 'Damage_percentage' # ['Damage_percentage', 'DamageLayer1', 'DamageLayer2', 'DamageLayer3', 'DamageLayer4', 'DamageLayer5']
 model = 'svm'                   #knn,svm,DT,dummy, 
-data_percentage = 1 # 0-> no data .... 1 -> full dataset (150 samples)
+data_percentage = 0.33 # 0-> no data .... 1 -> full dataset (150 samples)
 #odhgies gia user:
 #------gia na kanw tune to montelo pou thelo peirazw to arxeio training params
 #----- an thelo na allaksw ton arithmo twn samples phgainw stis train test split
@@ -47,7 +48,7 @@ else:
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
-
+samples = float(len(X_train))
 
 
 def class_model_results(model):
@@ -100,7 +101,7 @@ def bar_charts_acc_time():
 
     plt.xlabel("Models")
     plt.ylabel("Accuracy")
-    plt.title(f"Accuracy of models")
+    plt.title(f"Accuracy of models with {math.ceil(samples)} samples")
     plt.show()
 
 
