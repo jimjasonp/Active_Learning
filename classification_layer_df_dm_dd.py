@@ -1,10 +1,11 @@
 from y_set_df_dm_dd import layer_damage
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score,confusion_matrix
+from sklearn.metrics import accuracy_score,confusion_matrix,ConfusionMatrixDisplay
 from sklearn.linear_model import LogisticRegression
 import pandas as pd
 from x_set_creator import sensor_mean
+import matplotlib.pyplot as plt
 
 
 X = sensor_mean
@@ -39,8 +40,11 @@ LR = LogisticRegression(
 LR.fit(X_train, y_train)
 y_pred = LR.predict(X_test)
 
-CM = confusion_matrix(y_test,y_pred)
-print(CM)
+cm = confusion_matrix(y_test,y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+disp.plot()
+plt.show()
+
 accuracy = accuracy_score(y_test, y_pred)
 print('===============')
 print("Accuracy:", accuracy)
